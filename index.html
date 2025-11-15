@@ -1,722 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title>Lift Each Other Up — A Call to Help</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Join a movement of everyday kindness. Volunteer, donate, and share your skills to help people in need." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f172a;          /* slate-900 */
+      --panel: #111827;       /* gray-900 */
+      --text: #e5e7eb;        /* gray-200 */
+      --muted: #94a3b8;       /* slate-400 */
+      --accent: #22c55e;      /* green-500 */
+      --accent-2: #06b6d4;    /* cyan-500 */
+      --danger: #ef4444;      /* red-500 */
+      --card: #1f2937;        /* gray-800 */
+      --border: #334155;      /* slate-700 */
+      --focus: #fde68a;       /* amber-300 */
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(6,182,212,.18), transparent 60%),
+                  radial-gradient(900px 520px at 10% 0%, rgba(34,197,94,.18), transparent 65%), var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.6;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: saturate(150%) blur(6px);
+      background: rgba(15,23,42,.6);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand {
+      display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .2px;
+    }
+    .brand .logo {
+      width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 8px 24px rgba(34,197,94,.25), 0 4px 12px rgba(6,182,212,.2);
+    }
+    .nav-links { display: flex; gap: 18px; }
+    .nav-links a { color: var(--text); font-weight: 600; }
+    .nav-cta a {
+      display: inline-block; padding: 10px 14px; border-radius: 10px; font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), #16a34a); color: #022c22;
+      box-shadow: 0 8px 20px rgba(22,163,74,.35);
+    }
+    .hero {
+      padding: 72px 0 36px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5.5vw, 56px);
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: .3px;
+    }
+    .hero p {
+      max-width: 720px; margin: 16px auto 26px; color: var(--muted); font-size: clamp(16px, 2.3vw, 20px);
+    }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 12px;
+      font-weight: 700; border: 1px solid var(--border);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #16a34a);
+      color: #052e2a; border: none; box-shadow: 0 10px 26px rgba(22,163,74,.35);
+    }
+    .btn-secondary { background: var(--card); color: var(--text); }
+    .section { padding: 28px 0; }
+    .panel { background: rgba(31,41,55,.7); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+    .grid { display: grid; gap: 18px; }
+    @media (min-width: 800px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+    h2 { font-size: clamp(22px, 3.8vw, 30px); margin: 0 0 10px; }
+    h3 { font-size: clamp(18px, 2.6vw, 22px); margin: 0 0 8px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+    .muted { color: var(--muted); }
+    .list { display: grid; gap: 8px; padding-left: 0; list-style: none; }
+    .list li { display: grid; grid-template-columns: 24px 1fr; align-items: start; gap: 10px; }
+    .icon {
+      width: 24px; height: 24px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center;
+      color: #052e2a; font-weight: 900; background: linear-gradient(135deg, var(--accent), #16a34a);
+      box-shadow: 0 4px 10px rgba(22,163,74,.3);
+    }
+    .testimonial {
+      background: rgba(2,6,23,.6); border: 1px dashed var(--border); border-radius: 14px; padding: 16px;
+    }
+    blockquote { margin: 0; color: #e2e8f0; font-style: italic; }
+    .donate-cta { display: grid; gap: 12px; align-items: center; }
+    .donate-amounts { display: flex; gap: 10px; flex-wrap: wrap; }
+    .pill {
+      padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: rgba(31,41,55,.8);
+      color: var(--text); font-weight: 700; cursor: pointer;
+    }
+    .pill.active { background: linear-gradient(135deg, var(--accent), #16a34a); color: #052e2a; border-color: transparent; }
+    form { display: grid; gap: 10px; }
+    input, textarea, select {
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+      background: rgba(15,23,42,.6); color: var(--text); font: inherit;
+    }
+    input::placeholder, textarea::placeholder { color: #94a3b8; }
+    .notice {
+      background: rgba(234,179,8,.1); border: 1px solid rgba(234,179,8,.35); color: #fde68a;
+      padding: 12px; border-radius: 12px; font-weight: 600;
+    }
+    footer {
+      margin-top: 28px; border-top: 1px solid var(--border); background: rgba(15,23,42,.7);
+    }
+    .footer-inner { padding: 18px 0; display: grid; gap: 8px; }
+    .small { font-size: 13px; color: var(--muted); }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); border: 0;
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+  <header aria-label="Top navigation">
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div aria-hidden="true" class="logo"></div>
+          <span>Lift Each Other Up</span>
         </div>
-    </header>
+        <div class="nav-links" role="navigation" aria-label="Primary">
+          <a href="#mission">Mission</a>
+          <a href="#help">How to help</a>
+          <a href="#stories">Stories</a>
+          <a href="#donate">Donate</a>
+          <a href="#volunteer" class="nav-cta"><span>Volunteer</span></a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <h1 id="hero-title">Your kindness can change someone’s tomorrow</h1>
+        <p>
+          When we reach out—one hour, one message, one meal—we prove that care is not a theory, it’s an action.
+          Join a community turning compassion into practical help for neighbors and strangers alike.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#donate" aria-label="Donate now">Donate now</a>
+          <a class="btn btn-secondary" href="#volunteer" aria-label="Become a volunteer">Become a volunteer</a>
         </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+    <section id="mission" class="section">
+      <div class="container panel">
+        <h2>Mission and values</h2>
+        <p class="muted">
+          We mobilize everyday people to offer concrete support: food, shelter access, mental health resources, tutoring, and job guidance.
+          We act with dignity, transparency, and local accountability.
+        </p>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Dignity first</h3>
+            <p class="muted">We listen to needs before offering solutions, respecting autonomy and culture.</p>
+          </div>
+          <div class="card">
+            <h3>Practical impact</h3>
+            <p class="muted">We focus on tangible outcomes: meals served, hours mentored, families housed.</p>
+          </div>
+          <div class="card">
+            <h3>Local trust</h3>
+            <p class="muted">We partner with community groups to deliver help quickly and responsibly.</p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+    <section id="help" class="section">
+      <div class="container">
+        <h2>Ways you can help today</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Share your time</h3>
+            <ul class="list">
+              <li>
+                <span class="icon" aria-hidden="true">⏰</span>
+                <div>
+                  <strong>Mentor:</strong> Guide students or job seekers for 2–4 hours per month.
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+              </li>
+              <li>
+                <span class="icon" aria-hidden="true">📦</span>
+                <div>
+                  <strong>Deliver:</strong> Help distribute food, supplies, or books in your neighborhood.
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+              </li>
+              <li>
+                <span class="icon" aria-hidden="true">💬</span>
+                <div>
+                  <strong>Check-in:</strong> Call or message someone isolated—connection matters.
                 </div>
-            </div>
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Share your skills</h3>
+            <ul class="list">
+              <li>
+                <span class="icon" aria-hidden="true">🧩</span>
+                <div>
+                  <strong>Professional help:</strong> Offer legal, financial, tech, design, or counseling skills pro bono.
+                </div>
+              </li>
+              <li>
+                <span class="icon" aria-hidden="true">🛠</span>
+                <div>
+                  <strong>Fix and build:</strong> Repair devices, bikes, small home issues, or build community spaces.
+                </div>
+              </li>
+              <li>
+                <span class="icon" aria-hidden="true">🧮</span>
+                <div>
+                  <strong>Tutor:</strong> Support learners with language, math, or digital literacy.
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Share your resources</h3>
+            <ul class="list">
+              <li>
+                <span class="icon" aria-hidden="true">🍎</span>
+                <div>
+                  <strong>Food drives:</strong> Donate non-perishables or sponsor meal kits.
+                </div>
+              </li>
+              <li>
+                <span class="icon" aria-hidden="true">📚</span>
+                <div>
+                  <strong>Learning tools:</strong> Provide books, devices, or data plans to students in need.
+                </div>
+              </li>
+              <li>
+                <span class="icon" aria-hidden="true">🏠</span>
+                <div>
+                  <strong>Bridge support:</strong> Fund short-term housing or transport for urgent cases.
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+    <section id="stories" class="section">
+      <div class="container panel">
+        <h2>Real stories, real change</h2>
+        <div class="grid grid-2">
+          <div class="testimonial">
+            <blockquote>
+              “A volunteer called me every week when I felt invisible. That simple kindness kept me going.”
+            </blockquote>
+            <p class="muted">— Leila, new mother, found community support</p>
+          </div>
+          <div class="testimonial">
+            <blockquote>
+              “The job coaching helped me rewrite my resume, but more importantly, it rebuilt my confidence.”
+            </blockquote>
+            <p class="muted">— Jamal, hospitality worker, now employed full-time</p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
+    <section id="donate" class="section">
+      <div class="container">
+        <div class="grid">
+          <div class="card donate-cta">
+            <h2>Donate — turn care into action</h2>
+            <p class="muted">
+              Every contribution fuels meals, mentorship, and emergency relief. Transparency is our promise: we report outcomes publicly.
+            </p>
+            <div class="donate-amounts" role="group" aria-label="Quick donation amounts">
+              <button class="pill active" type="button">$10</button>
+              <button class="pill" type="button">$25</button>
+              <button class="pill" type="button">$50</button>
+              <button class="pill" type="button">$100</button>
+              <button class="pill" type="button">Custom</button>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+            <form aria-label="Donation form">
+              <label>
+                <span class="sr-only">Donation amount</span>
+                <input type="number" name="amount" placeholder="Enter amount (USD)" min="1" required />
+              </label>
+              <label>
+                <span class="sr-only">Email</span>
+                <input type="email" name="email" placeholder="Email for receipt" required />
+              </label>
+              <label>
+                <span class="sr-only">Message (optional)</span>
+                <textarea name="message" placeholder="Optional message of encouragement" rows="3"></textarea>
+              </label>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn btn-primary" type="submit">Donate securely</button>
+                <button class="btn btn-secondary" type="button" aria-label="Learn about impact">See impact reports</button>
+              </div>
+              <p class="small muted">Your information is handled with care and never sold. We publish anonymized impact metrics quarterly.</p>
+            </form>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
+    <section id="volunteer" class="section">
+      <div class="container panel">
+        <h2>Volunteer — start where you are</h2>
+        <p class="muted">
+          You don’t need a perfect plan. You need a first step. Tell us your interests, and we’ll match you with a local opportunity.
+        </p>
+        <form aria-label="Volunteer form">
+          <div class="grid grid-2">
+            <label>
+              <span class="sr-only">Full name</span>
+              <input type="text" name="name" placeholder="Full name" required />
+            </label>
+            <label>
+              <span class="sr-only">Email</span>
+              <input type="email" name="email" placeholder="Email" required />
+            </label>
+          </div>
+          <div class="grid grid-2">
+            <label>
+              <span class="sr-only">City</span>
+              <input type="text" name="city" placeholder="City / District" />
+            </label>
+            <label>
+              <span class="sr-only">Availability</span>
+              <select name="availability">
+                <option value="">Availability</option>
+                <option>Weekdays (evenings)</option>
+                <option>Weekends</option>
+                <option>Remote only</option>
+                <option>Flexible</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            <span class="sr-only">Interests</span>
+            <input type="text" name="interests" placeholder="Interests (e.g., tutoring, deliveries, tech support)" />
+          </label>
+          <label>
+            <span class="sr-only">Notes</span>
+            <textarea name="notes" placeholder="Tell us why you want to help (optional)" rows="3"></textarea>
+          </label>
+          <div class="notice" role="note">
+            No gatekeeping here. Everyone has something meaningful to offer. We’ll help you find it.
+          </div>
+          <button class="btn btn-primary" type="submit">Join the volunteer network</button>
+        </form>
+      </div>
+    </section>
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
+    <section class="section" aria-label="Safety and respect">
+      <div class="container card">
+        <h2>Safety and respect</h2>
+        <ul class="list">
+          <li>
+            <span class="icon" aria-hidden="true">🫶</span>
+            <div><strong>Consent matters:</strong> Ask before helping; follow the lead of the person receiving support.</div>
+          </li>
+          <li>
+            <span class="icon" aria-hidden="true">🪪</span>
+            <div><strong>Safeguarding:</strong> Volunteers are briefed on boundaries and protection policies to keep everyone safe.</div>
+          </li>
+          <li>
+            <span class="icon" aria-hidden="true">🔍</span>
+            <div><strong>Transparency:</strong> Donations are tracked and reported with clear, public outcomes.</div>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
+    <section class="section" id="contact">
+      <div class="container panel">
+        <h2>Contact and partnerships</h2>
+        <p class="muted">
+          Want to partner or host a local drive? We’d love to collaborate. Share your idea and we’ll get back within 2 business days.
+        </p>
+        <form aria-label="Contact form">
+          <div class="grid grid-2">
+            <label>
+              <span class="sr-only">Organization</span>
+              <input type="text" name="org" placeholder="Organization (optional)" />
+            </label>
+            <label>
+              <span class="sr-only">Contact email</span>
+              <input type="email" name="email" placeholder="Contact email" required />
+            </label>
+          </div>
+          <label>
+            <span class="sr-only">Message</span>
+            <textarea name="message" placeholder="Describe your idea or request" rows="4" required></textarea>
+          </label>
+          <button class="btn btn-secondary" type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
+  <footer role="contentinfo">
+    <div class="container footer-inner">
+      <div>
+        <strong>Lift Each Other Up</strong> — everyday kindness, measurable impact.
+      </div>
+      <div class="small">
+        © <span id="year"></span> Lift Each Other Up. All rights reserved.
+        · <a href="#" aria-label="Read our privacy notice">Privacy</a>
+        · <a href="#" aria-label="Read our transparency reports">Transparency</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Quick amount pills
+    const pills = document.querySelectorAll('.donate-amounts .pill');
+    const amountInput = document.querySelector('input[name="amount"]');
+    pills.forEach(p => {
+      p.addEventListener('click', () => {
+        pills.forEach(i => i.classList.remove('active'));
+        p.classList.add('active');
+        const val = p.textContent.replace(/[^0-9]/g, '');
+        if (val) amountInput.value = val;
+        else amountInput.focus();
+      });
+    });
+
+    // Simple form intercept (demo only)
+    const demoForms = document.querySelectorAll('form');
+    demoForms.forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you! Your submission has been recorded.');
+      });
+    });
+  </script>
 </body>
-
 </html>
